@@ -1,3 +1,4 @@
+
 class Movie{
   String title;
   String posterURL;
@@ -21,10 +22,24 @@ class Movie{
       year: json['release_date'].substring(0, 3),
       rating: json['vote_average'],
       inCollection: false,
-      // genres: _loadGenres(json['genre_ids']),
       id: json['id'],
-      backdropURL: json['backdrop_path']
+      backdropURL: json['backdrop_path'],
+      genres: json['genres'].split('|')
     );
+  }
+
+  Map<String, dynamic> toMap(){
+    return {
+      'title': title,
+      'posterURL': posterURL,
+      'description': description,
+      'year': year,
+      'rating': rating,
+      'id': id,
+      'backdropURL': backdropURL,
+      'runtime': runtime,
+      'genres': genres.join('|')
+    };
   }
 
   // List<String> _loadGenres(List<int> genreIds){
