@@ -1,6 +1,6 @@
 
 class Movie{
-  String title;
+  final String title;
   String posterURL;
   String description;
   String year;
@@ -8,11 +8,11 @@ class Movie{
   String rating;
   bool inCollection;
   List<String> genres;
-  int id;
+  final int id;
   String backdropURL;
 
-  Movie({this.posterURL='', this.title='', this.year='', this.runtime='', this.description='',
-  this.rating='', this.inCollection=false, this.genres=const [], this.id=-1, this.backdropURL=''}){}
+  Movie({this.posterURL='', required this.title, this.year='', this.runtime='', this.description='',
+  this.rating='', this.inCollection=false, this.genres=const [], required this.id, this.backdropURL=''}){}
 
   static Movie fromJSON(Map<String, dynamic> json){
     return Movie(
@@ -42,6 +42,20 @@ class Movie{
     };
   }
 
+  String toString(){
+    return '''
+    Movie{'title': $title,
+    'posterURL': $posterURL,
+    'description': $description,
+    'year': $year,
+    'rating': $rating,
+    'id': $id,
+    'backdropURL': $backdropURL,
+    'runtime': $runtime,
+    'genres': $genres }
+           ''';
+  }
+
   // List<String> _loadGenres(List<int> genreIds){
   //   return ['None'];
   // }
@@ -60,7 +74,7 @@ class Movie{
 
   bool getInCollection(){return inCollection;}
 
-  void toggleInCollection(){inCollection = !inCollection;}
+  void setInCollection(bool val){inCollection = val;}
 
   List<String> getGenres(){return genres;}
 

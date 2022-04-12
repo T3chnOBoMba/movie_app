@@ -10,6 +10,7 @@ class MovieList extends StatelessWidget{
     _movies = movieData;
   }
 
+  @override
   Widget build(BuildContext context){
     return ListView.builder(
       padding: EdgeInsets.all(5.0),
