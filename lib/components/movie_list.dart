@@ -10,8 +10,10 @@ class MovieList extends StatelessWidget{
     _movies = movieData;
   }
 
+  @override
   Widget build(BuildContext context){
     return ListView.builder(
+      padding: EdgeInsets.all(5.0),
       itemCount: _movies.length,
       scrollDirection: direction,
       itemBuilder: (BuildContext context, int i){
