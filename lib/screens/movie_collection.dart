@@ -42,7 +42,6 @@ class MovieCollection extends StatelessWidget{
               //   return const Text("Error reading collection data");
               return Container(
                 margin: EdgeInsets.all(15.0),
-                height: MediaQuery.of(context).size.height * 0.70,
                 child: MovieList(snapshot.data)
               );
             }

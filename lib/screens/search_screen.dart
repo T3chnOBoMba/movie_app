@@ -44,10 +44,13 @@ class _SearchScreenState extends State<SearchScreen>{
                   return const Text("Found no matches for your search");
                 return Container(
                   child: MovieList(snapshot.data),
-                  height: MediaQuery.of(context).size.height * 0.6
                 );
               }
             ),
+            Container(
+              child: TmdbFooter(),
+              margin: EdgeInsets.all(10.0)
+            )
           ]
         )
     );
