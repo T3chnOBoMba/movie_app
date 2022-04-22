@@ -19,6 +19,7 @@ class _SearchScreenState extends State<SearchScreen>{
       appBar: AppBar(
         title: const Text('Search')
       ),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: ListView(
           children: <Widget>[
             Row(
