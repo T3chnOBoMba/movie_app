@@ -18,6 +18,7 @@ class APIHandler{
       'language=en-US&page=1&include_adult=false&query=$searchTerm'));
     if(res.statusCode == 200){
       List<dynamic> movies = jsonDecode(res.body)['results'];
+      movies = movies.where((i) => (i['poster_path'] != null && i['release_date'] != '')).toList();
 
       List<bool> collected = [];
       for(int i = 0; i < movies.length; i++)
