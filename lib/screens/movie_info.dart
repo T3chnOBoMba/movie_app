@@ -6,8 +6,12 @@ import 'package:movie_app/api_handler.dart';
 
 class MovieInfo extends StatefulWidget{
   var movie;
+  String genres = '';
 
-  MovieInfo(Movie m){movie = m;}
+  MovieInfo(Movie m){
+    movie = m;
+    genres = movie.getGenres().join(', ');
+  }
   _MovieInfoState createState() => _MovieInfoState();
 }
 
@@ -20,9 +24,8 @@ class _MovieInfoState extends State<MovieInfo>{
     else
       buttonText = "Add to Collection";
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.movie.getTitle())
-      ),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(),
       body: Padding(
         padding: EdgeInsets.all(15.0),
         child: ListView(
@@ -38,16 +41,21 @@ class _MovieInfoState extends State<MovieInfo>{
               child: Image.network(widget.movie.getPosterURL(), fit: BoxFit.contain)
             ),
             Container(
+              margin: EdgeInsets.all(10.0),
+              child: Text(widget.genres, style: Theme.of(context).textTheme.displaySmall)
+            ),
+            Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(top:10.0, bottom: 10.0),
-              child: Text(widget.movie.getDescription(), style: TextStyle(fontSize: 20))
+              child: Text(widget.movie.getDescription(), style: Theme.of(context).textTheme.bodyMedium),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Text('Runtime: ' + widget.movie.getRuntime(), style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-                Text('Rating: ' + widget.movie.getRating(), style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold))
+                Text(widget.movie.getYear(), style: Theme.of(context).textTheme.displaySmall),
+                Text('Runtime: ' + widget.movie.getRuntime(), style: Theme.of(context).textTheme.displaySmall),
+                Text('Rating: ' + widget.movie.getRating(), style: Theme.of(context).textTheme.displaySmall)
               ]
             ),
             Container(
