@@ -4,6 +4,7 @@ import 'package:movie_app/components/movie_list.dart';
 import 'package:movie_app/components/tmdb_footer.dart';
 import 'package:movie_app/moviedb.dart';
 import 'package:movie_app/api_handler.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 
 class SearchScreen extends StatefulWidget{
   _SearchScreenState createState() => _SearchScreenState();
@@ -39,7 +40,7 @@ class _SearchScreenState extends State<SearchScreen>{
               future: getSearchResults(_searchTerm),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
                 if(snapshot.connectionState != ConnectionState.done)
-                  return const CircularProgressIndicator();
+                  return JumpingDotsProgressIndicator(fontSize: 25.0);
                 if(snapshot.data == [] || snapshot.data == null)
                   return const Text("Found no matches for your search");
                 return Container(

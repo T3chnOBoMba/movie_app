@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/movie_card.dart';
-import 'components/movie_list.dart';
 import 'screens/movie_collection.dart';
-import 'movie.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +13,25 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme(
+          brightness: Brightness.dark,
+          primary: Color.fromRGBO(54, 48, 98, 1.0),
+          onPrimary: Colors.white,
+          primaryContainer: Colors.indigo.shade900,
+          secondary: Colors.indigo.shade900,
+          onSecondary: Colors.black,
+          error: Colors.red,
+          onError: Colors.black,
+          background: Color.fromRGBO(31, 29, 54, 1.0),
+          onBackground: Colors.white,
+          surface: Color.fromRGBO(54, 48, 98, 1.0),
+          onSurface: Colors.black
+        ),
+        textTheme: TextTheme(
+          titleLarge: TextStyle(fontSize: 40),
+          displaySmall: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          bodyMedium: TextStyle(fontSize: 20)
+        )
       ),
       home: MovieCollection()
     );

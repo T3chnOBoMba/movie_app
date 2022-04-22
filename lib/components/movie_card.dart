@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/screens/movie_info.dart';
 import 'package:movie_app/movie.dart';
+import 'package:movie_app/api_handler.dart';
 
 class MovieCard extends StatelessWidget{
 
@@ -20,10 +21,12 @@ class MovieCard extends StatelessWidget{
         maxHeight: 200
       ),
       child: Card(
+        color: Theme.of(context).colorScheme.surface,
         child: InkWell(
-          onTap: (){
+          onTap: () async{
+            Movie details = await APIHandler.getMovieDetails(_movie.getId());
             Navigator.push(context, MaterialPageRoute(
-              builder: (context) => MovieInfo(_movie)
+              builder: (context) => MovieInfo(details)
             )
             );
           },
@@ -61,4 +64,8 @@ class MovieCard extends StatelessWidget{
       )
     );
   }
+
+  // void getDetails() async{
+  //   APIHandler.getMovieDetails(_movie.getId());
+  // }
 }

@@ -7,6 +7,7 @@ class APIHandler{
 
   static const APIKEY = String.fromEnvironment('API_KEY');
   static const URLBASE = 'https://api.themoviedb.org/3';
+  static const POSTERBASE = 'https://image.tmdb.org/t/p/w500';
 
   /**
    * Searches for movie results with the given string
@@ -26,7 +27,7 @@ class APIHandler{
 
         String poster = '';
         if(movies[i]['poster_path'] != null)
-          poster = 'https://image.tmdb.org/t/p/w500' + movies[i]['poster_path'];
+          poster = POSTERBASE + movies[i]['poster_path'];
 
         String year = '';
         if(movies[i]['release_date'].length > 1)
@@ -53,7 +54,7 @@ class APIHandler{
    * Returns a Movie object hydrated with all details
    */
   static Future<Movie> getMovieDetails(int id) async{
-    Response res = await get(Uri.parse('$URLBASE/movie/${id}?$APIKEY&language=en-US'));
+    Response res = await get(Uri.parse('$URLBASE/movie/${id}?api_key=$APIKEY&language=en-US'));
     if(res.statusCode == 200){
       Map<String, dynamic> details = jsonDecode(res.body);
       int hours = details['runtime'] ~/ 60;
@@ -61,16 +62,18 @@ class APIHandler{
       List<String> genres = [];
       for(int i = 0; i < details['genres'].length; i++)
         genres.add(details['genres'][i]['name']);
+      bool inCollection = await MoviesDatabase.instance.inCollection(id);
       return Movie(
         id: id,
         title: details['title'],
-        posterURL: details['poster_path'],
+        posterURL: POSTERBASE + details['poster_path'],
         description: details['overview'],
-        year: details['release_date'].substring(0, 3),
+        year: details['release_date'].substring(0, 4),
         runtime: '${hours}h ${minutes}m',
         genres: genres,
         rating: details['vote_average'].toString(),
         backdropURL: details['backdrop_path'],
+        inCollection: inCollection
       );
     }
     return Movie(id: -1, title: '');

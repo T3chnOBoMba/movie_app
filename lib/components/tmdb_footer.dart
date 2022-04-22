@@ -13,7 +13,8 @@ class TmdbFooter extends StatelessWidget{
         children: <Widget>[Container(
           child: Image.asset("assets/images/tmdbLogo.jpg")
         ),
-          const Text("This product uses the TMDB API but is not endorsed or certified by TMDB." ),
+          Text("This product uses the TMDB API but is not endorsed or certified by TMDB.",
+        style: Theme.of(context).textTheme.displaySmall),
         ]
       )
     );
