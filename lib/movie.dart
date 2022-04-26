@@ -4,15 +4,15 @@ class Movie{
   String posterURL;
   String description;
   String year;
-  String runtime;
-  String rating;
+  int runtime;
+  double rating;
   bool inCollection;
   List<String> genres;
   final int id;
   String backdropURL;
 
-  Movie({this.posterURL='', required this.title, this.year='', this.runtime='', this.description='',
-  this.rating='', this.inCollection=false, this.genres=const [], required this.id, this.backdropURL=''}){}
+  Movie({this.posterURL='', required this.title, this.year='', this.runtime=0, this.description='',
+  this.rating=0.0, this.inCollection=false, this.genres=const [], required this.id, this.backdropURL=''}){}
 
   static Movie fromJSON(Map<String, dynamic> json){
     return Movie(
@@ -56,10 +56,6 @@ class Movie{
            ''';
   }
 
-  // List<String> _loadGenres(List<int> genreIds){
-  //   return ['None'];
-  // }
-
   String getTitle(){return title;}
 
   String getPosterURL(){return posterURL;}
@@ -68,9 +64,9 @@ class Movie{
 
   String getYear(){return year;}
 
-  String getRuntime(){return runtime;}
+  int getRuntime(){return runtime;}
 
-  String getRating(){return rating;}
+  double getRating(){return rating;}
 
   bool getInCollection(){return inCollection;}
 
@@ -81,4 +77,10 @@ class Movie{
   int getId(){return id;}
 
   String getBackdropURL(){return backdropURL;}
+
+  String runtimeHoursMinutes(){
+    int hours = runtime ~/ 60;
+    int minutes = runtime - (hours * 60);
+    return '${hours}h ${minutes}m';
+  }
 }

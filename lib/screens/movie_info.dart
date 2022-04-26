@@ -54,8 +54,8 @@ class _MovieInfoState extends State<MovieInfo>{
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text(widget.movie.getYear(), style: Theme.of(context).textTheme.displaySmall),
-                Text('Runtime: ' + widget.movie.getRuntime(), style: Theme.of(context).textTheme.displaySmall),
-                Text('Rating: ' + widget.movie.getRating(), style: Theme.of(context).textTheme.displaySmall)
+                Text('Runtime: ' + widget.movie.runtimeHoursMinutes(), style: Theme.of(context).textTheme.displaySmall),
+                Text('Rating: ' + widget.movie.getRating().toString(), style: Theme.of(context).textTheme.displaySmall)
               ]
             ),
             Container(

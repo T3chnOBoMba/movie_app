@@ -32,8 +32,8 @@ class MoviesDatabase{
             posterURL TEXT,
             description TEXT,
             year TEXT,
-            runtime TEXT,
-            rating TEXT,
+            runtime INTEGER,
+            rating REAL,
             backdropURL TEXT,
             genres TEXT
           )'''
@@ -57,7 +57,6 @@ class MoviesDatabase{
   Future<List<Movie>> getCollection() async{
     final db = await instance.database;
     final List<Map<String, dynamic>> maps = await db.query('collection', orderBy: 'title');
-    final List<Map<String, dynamic>> rawMaps = await db.rawQuery('SELECT * FROM collection');
     if(maps.length == 0)
       return <Movie>[];
     return List<Movie>.generate(maps.length, (i){

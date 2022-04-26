@@ -64,8 +64,4 @@ class MovieCard extends StatelessWidget{
       )
     );
   }
-
-  // void getDetails() async{
-  //   APIHandler.getMovieDetails(_movie.getId());
-  // }
 }

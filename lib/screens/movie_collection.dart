@@ -38,8 +38,6 @@ class MovieCollection extends StatelessWidget{
                 return JumpingDotsProgressIndicator(fontSize: 25.0);
               if(!snapshot.hasData)
                 return const Text("You currently have no movies in your collection");
-              // if(snapshot.data.statusCode > 299)
-              //   return const Text("Error reading collection data");
               return Container(
                 margin: EdgeInsets.all(15.0),
                 child: MovieList(snapshot.data)
